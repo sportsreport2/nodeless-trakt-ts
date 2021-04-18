@@ -9,6 +9,8 @@ const randomHex = require('random-hexadecimal');
 const methods = require('./methods.json');
 const sanitizer = require('sanitizer').sanitize;
 
+const fetch = require('isomorphic-fetch');
+
 module.exports.Trakt = class Trakt {
     constructor(settings = {}, debug) {
         if (!settings.client_id) throw Error('Missing client_id');
@@ -119,7 +121,7 @@ module.exports.Trakt = class Trakt {
         };
 
         this._debug(req);
-        return fetch(req.url, req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
+        return fetch(req.url, req).then(response => this._sanitize(response.json())).catch(error => {
             throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
         });
     }
