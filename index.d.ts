@@ -906,7 +906,9 @@ export interface MovieQuery {
 
 export interface ShowQuery {
   type: "show";
-  fields: "title" | "overview" | "people" | "translations" | "aliases";
+  query: string
+  years?: number
+  fields?: "title" | "overview" | "people" | "translations" | "aliases";
 }
 
 export interface EpisodeQuery {
@@ -930,6 +932,7 @@ export interface SearchIdQuery {
 }
 
 export interface SeasonQuery {
+  id: number
   season: number | string;
 }
 

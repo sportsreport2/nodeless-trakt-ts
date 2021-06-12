@@ -110,7 +110,7 @@ module.exports.Trakt = class Trakt {
     }
 
     // Get code to paste on login screen
-    _device_code(str, type) {
+    async _device_code(str, type) {
         const req = {
             method: 'POST',
             url: this._settings.endpoint + '/oauth/device/' + type,
@@ -121,9 +121,38 @@ module.exports.Trakt = class Trakt {
         };
 
         this._debug(req);
-        return fetch(req.url, req).then(response => this._sanitize(response.json())).catch(error => {
+        try {
+            const response = await fetch(req.url, req);
+            return this._sanitize(response.json());
+        } catch (error) {
             throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
-        });
+        }
+    }
+
+    // Get code to paste on login screen
+    async _device_code_token(str, type) {
+        const req = {
+            method: 'POST',
+            url: this._settings.endpoint + '/oauth/device/' + type,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(str)
+        };
+
+        this._debug(req);
+        try {
+            const response = await fetch(req.url, req);
+            if(response.status === 200) {
+                return this._sanitize(response.json());
+            } else {
+                throw {
+                    'response': response
+                }
+            }
+        } catch (error) {
+            throw (error.response && error.response.status == 401) ? Error(error.response.headers['www-authenticate']) : error;
+        }
     }
 
     // Parse url before api call
@@ -304,7 +333,7 @@ module.exports.Trakt = class Trakt {
                     return reject(Error('Expired'));
                 }
 
-                this._device_code({
+                this._device_code_token({
                     code: poll.device_code,
                     client_id: this._settings.client_id,
                     client_secret: this._settings.client_secret
@@ -317,7 +346,7 @@ module.exports.Trakt = class Trakt {
                     resolve(body);
                 }).catch(error => {
                     // do nothing on 400
-                    if (error.response && error.response.statusCode === 400) return;
+                    if (error.response && error.response.status === 400) return;
 
                     clearInterval(polling);
                     reject(error);
