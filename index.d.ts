@@ -1002,6 +1002,239 @@ export interface UpdatedShow {
 
 export declare class Trakt {
   constructor(settings: TraktSettings, debug?: boolean);
+
+  request: {
+    calendars: {
+        my: {
+          shows(params?: Calendars): Object;
+          new_shows(params?: Calendars): Object;
+          premieres_shows(params?: Calendars): Object;
+          movies(params?: Calendars): Object;
+          dvd(params?: Calendars): Object;
+        };
+        all: {
+          shows(params?: Calendars): Object;
+          new_shows(params?: Calendars): Object;
+          premieres_shows(params?: Calendars): Object;
+          movies(params?: Calendars): Object;
+          dvd(params?: Calendars): Object;
+        };
+      };
+      checkin: {
+        add(
+          params: CheckinBody
+        ): Object;
+        delete(): Object;
+      };
+      certifications(params: { type: string }): Promise<any>;
+      comments: {
+        comment: {
+          add(params: CommentBody): Object;
+          get(params: Id): Object;
+          update(params: Id & Comment): Object;
+          remove(params: Id): Object;
+        };
+        replies: {
+          add(params: Id & Comment): Object;
+          get(params: Id & PaginationQuery): Object;
+          update(params: Id & Comment): Object;
+          remove(params: Id): Object;
+        };
+        item(
+          params: Id & Extended
+        ): Object;
+        likes(
+          params: Id & PaginationQuery
+        ): Object;
+        like: {
+          add(params: Id): Object;
+          remove(params: Id): Object;
+        };
+        trending(
+          params?: CommentQuery & Extended & PaginationQuery
+        ): Object;
+        recent(
+          params?: CommentQuery & Extended & PaginationQuery
+        ): Object;
+        updates(
+          params?: CommentQuery & Extended & PaginationQuery
+        ): Object;
+      };
+      countries(params: { type: "movies" | "shows" }): Object;
+      genres(params: { type: "movies" | "shows" }): Object;
+      languages(params: { type: "movies" | "shows" }): Object;
+      lists: {
+        trending(params?: PaginationQuery): Object;
+        popular(params?: PaginationQuery): Object;
+      };
+      movies: {
+        trending(params?: PaginationQuery & Extended): Object;
+        popular(params?: PaginationQuery & Extended): Object;
+        played(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        watched(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        collected(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        anticipated(
+          params?: PaginationQuery & Extended
+        ): Object;
+        boxoffice(params?: Extended): Object;
+        updates(
+          params?: { start_date?: string } & PaginationQuery & Extended
+        ): Object;
+        summary(params: Id & Extended): Object;
+        aliases(params: Id): Object;
+        releases(params: Id & { country?: string }): Object;
+        translations(
+          params: Id & { language?: string }
+        ): Object;
+        comments(
+          params: Id & CommentSortQuery & PaginationQuery
+        ): Object;
+        lists(params: Id & TypeQuery & ListSortQuery): Object;
+        people(params: Id & Extended): Object;
+        ratings(params: Id): Object;
+        related(params: Id & Extended & PaginationQuery): Object;
+        stats(params: Id): Object;
+        watching(params: Id & Extended): Object;
+      };
+      networks(): Object;
+      people: {
+        summary(params: Id & Extended): Object;
+        shows(params: Id & Extended): Object;
+        movies(params: Id & Extended): Object;
+        lists(params: Id & TypeQuery & ListSortQuery): Object;
+      };
+      recommendations: {
+        movies: {
+          get(
+            params: Extended & {
+              limit?: number | string;
+              ignore_collected?: boolean;
+            }
+          ): Object;
+          hide(params: Id): Object;
+        };
+        shows: {
+          get(
+            params: Extended & {
+              limit?: number | string;
+              ignore_collected?: boolean;
+            }
+          ): Object;
+          hide(params: Id): Object;
+        };
+      };
+      scrobble: {
+        start(params: ScrobbleBody): Object;
+        pause(params: ScrobbleBody): Object;
+        stop(params: ScrobbleBody): Object;
+      };
+      search: {
+        text(
+          params: (
+            | MovieQuery
+            | ShowQuery
+            | EpisodeQuery
+            | PersonQuery
+            | ListQuery
+          ) &
+            PaginationQuery &
+            Extended
+        ): Object;
+        id(
+          params: SearchIdQuery & PaginationQuery & Extended
+        ): Object;
+      };
+      shows: {
+        trending(params?: PaginationQuery & Extended): Object;
+        popular(params?: PaginationQuery & Extended): Object;
+        played(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        watched(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        collected(
+          params?: PeriodQuery & PaginationQuery & Extended
+        ): Object;
+        anticipated(
+          params?: PaginationQuery & Extended
+        ): Object;
+        updates(
+          params?: { start_date?: string } & PaginationQuery & Extended
+        ): Object;
+        summary(params: Id & Extended): Object;
+        aliases(params: Id): Object;
+        translations(params: Id & { language?: string }): Object;
+        comments(
+          params: Id & CommentSortQuery & PaginationQuery
+        ): Object;
+        lists(params: Id & TypeQuery & ListSortQuery): Object;
+        progress: {
+          collection: any;
+          watched: any;
+        };
+        people(params: Id & Extended): Object;
+        ratings(params: Id): Object;
+        related(params: Id & Extended & PaginationQuery): Object;
+        stats(params: Id): Object;
+        watching(params: Id & Extended): Object;
+        next_episode(params: Id & Extended): Object;
+        last_episode(params: Id & Extended): Object;
+      };
+      seasons: {
+        summary(params: Id & Extended): Object;
+        season(
+          params?: Id & SeasonQuery & Extended & { translations?: string }
+        ): Object;
+        comments(
+          params: Id & SeasonQuery & CommentSortQuery & PaginationQuery
+        ): Object;
+        lists(
+          params: Id & SeasonQuery & TypeQuery & ListSortQuery & PaginationQuery
+        ): Object;
+        people(params: Id & SeasonQuery & Extended): Object;
+        ratings(params: Id & SeasonQuery): Object;
+        watching(params: Id & SeasonQuery & Extended): Object;
+      };
+      episodes: {
+        summary(
+          params: Id & SeasonQuery & EpisodeQuery & Extended
+        ): Object;
+        translations(
+          params: Id & SeasonQuery & EpisodeQuery & { language?: string }
+        ): Object;
+        comments(
+          params: Id &
+            SeasonQuery &
+            EpisodeQuery &
+            CommentSortQuery &
+            PaginationQuery
+        ): Object;
+        lists(
+          params: Id &
+            SeasonQuery &
+            EpisodeQuery &
+            TypeQuery &
+            ListSortQuery &
+            PaginationQuery
+        ): Object;
+        people(
+          params: Id & SeasonQuery & EpisodeQuery & { extended?: "guest_stars" }
+        ): Object;
+        ratings(params: Id & SeasonQuery & EpisodeQuery): Object;
+        stats(params: Id & SeasonQuery & EpisodeQuery): Object;
+        watching(
+          params: Id & SeasonQuery & EpisodeQuery & Extended
+        ): Object;
+      };
+  }
+
   calendars: {
     my: {
       shows(params?: Calendars): Promise<CalendarShowEntry[]>;

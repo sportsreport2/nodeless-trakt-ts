@@ -11,6 +11,16 @@ const sanitizer = require('sanitizer').sanitize;
 
 const fetch = require('isomorphic-fetch');
 
+const ray = require('node-ray').ray
+
+const Ray = require('node-ray').Ray
+
+// set several settings at once:
+Ray.useDefaultSettings({
+    host: 'host.docker.internal',
+    port: 23517
+});
+
 module.exports.Trakt = class Trakt {
     constructor(settings = {}, debug) {
         if (!settings.client_id) throw Error('Missing client_id');
@@ -31,6 +41,7 @@ module.exports.Trakt = class Trakt {
 
     // Creates methods for all requests
     _construct() {
+        let i=0
         for (let url in methods) {
             const urlParts = url.split('/');
             const name = urlParts.pop(); // key for function
@@ -44,6 +55,19 @@ module.exports.Trakt = class Trakt {
                 const method = methods[url]; // closure forces copy
                 return (params) => {
                     return this._call(method, params);
+                };
+            })();
+
+            let tmp2 = this;
+            tmp2 = tmp2['request'] || (tmp2['request'] = {});
+            for (let p = 1; p < urlParts.length; ++p) { // acts like mkdir -p
+                tmp2 = tmp2[urlParts[p]] || (tmp2[urlParts[p]] = {});
+            }
+
+            tmp2[name] = (() => {
+                const method = methods[url]; // closure forces copy
+                return (params) => {
+                    return this._request(method, params);
                 };
             })();
         }
@@ -238,6 +262,39 @@ module.exports.Trakt = class Trakt {
 
         this._debug(req);
         return fetch(req.url, req).then(response => this._parseResponse(method, params, response));
+    }
+
+    // Return request information that will be used for trakt methods
+    _request(method, params) {
+        if (method.opts['auth'] === true && (!this._authentication.access_token || !this._settings.client_secret)) throw Error('OAuth required');
+
+        const req = {
+            method: method.method,
+            url: this._parse(method, params),
+            headers: {
+                'Content-Type': 'application/json',
+                'trakt-api-version': '2',
+                'trakt-api-key': '[redacted]' //Don't actually pass API key as request should go through actual method
+            }
+        };
+
+        if (method.opts['auth']) req.headers['Authorization'] = 'Bearer redacted]';
+
+        if (method.method !== 'GET' && method.method !== 'HEAD') {
+            req.body = (method.body ? Object.assign({}, method.body) : {});
+            for (let k in params) {
+                if (k in req.body) req.body[k] = params[k];
+            }
+            for (let k in req.body) {
+                if (!req.body[k]) delete req.body[k];
+            }
+            req.body = JSON.stringify(req.body);
+        }
+
+        return req
+
+        // this._debug(req);
+        // return fetch(req.url, req).then(response => this._parseResponse(method, params, response));
     }
 
     // Parse trakt response: pagination & stuff
