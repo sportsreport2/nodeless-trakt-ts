@@ -261,7 +261,29 @@ module.exports.Trakt = class Trakt {
         }
 
         this._debug(req);
-        return fetch(req.url, req).then(response => this._parseResponse(method, params, response));
+        return fetch(req.url, req)
+            .then(response => this._parseResponse(method, params, response))
+            .catch(err => {
+                //Since 404 for trakt means "method exists, but no record found" (copied from documentation)
+                //Just return what the method expects nstead of throwing an error.
+                if(err.response && err.response.status === 404) {
+                    return this._expects(method)
+                }
+                throw err;
+            })
+    }
+
+    _expects(method) {
+        ray().toJson(method)
+        if(method.expects && method.expects === 'Object') {
+            return {};
+        }
+
+        if(method.expects &&method.expects === 'void') {
+            return;
+        }
+
+        return [];
     }
 
     // Return request information that will be used for trakt methods
@@ -299,6 +321,12 @@ module.exports.Trakt = class Trakt {
 
     // Parse trakt response: pagination & stuff
     _parseResponse (method, params, response) {
+        if(!response.ok) {
+            throw {
+                'response': response
+            }
+        }
+
         return response.json().then(data => {
           let parsed = data;
 

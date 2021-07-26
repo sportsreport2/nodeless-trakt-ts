@@ -911,7 +911,7 @@ export interface ShowQuery {
   fields?: "title" | "overview" | "people" | "translations" | "aliases";
 }
 
-export interface EpisodeQuery {
+export interface EpisodeSearchQuery {
   type: "episode";
   fields?: "title" | "overview";
 }
@@ -1139,7 +1139,7 @@ export declare class Trakt {
           params: (
             | MovieQuery
             | ShowQuery
-            | EpisodeQuery
+            | EpisodeSearchQuery
             | PersonQuery
             | ListQuery
           ) &
@@ -1370,7 +1370,7 @@ export declare class Trakt {
       params: (
         | MovieQuery
         | ShowQuery
-        | EpisodeQuery
+        | EpisodeSearchQuery
         | PersonQuery
         | ListQuery
       ) &
@@ -1400,7 +1400,7 @@ export declare class Trakt {
       params?: { start_date?: string } & PaginationQuery & Extended
     ): Promise<UpdatedShow[]>;
     summary(params: Id & Extended): Promise<Show>;
-    aliases(params: Id): Promise<Alias>;
+    aliases(params: Id): Promise<Alias[]>;
     translations(params: Id & { language?: string }): Promise<Translation[]>;
     comments(
       params: Id & CommentSortQuery & PaginationQuery

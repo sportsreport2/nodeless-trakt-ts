@@ -106,7 +106,8 @@
             "app_version": null,
             "app_date": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/checkin/delete": {
         "opts": {
@@ -115,7 +116,8 @@
         },
         "method": "DELETE",
         "url": "/checkin",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/comments/comment/add": {
         "opts": {
@@ -134,7 +136,8 @@
             "spoiler": null,
             "review": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/comments/comment/get": {
         "opts": {
@@ -143,7 +146,8 @@
         },
         "method": "GET",
         "url": "/comments/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/comments/comment/update": {
         "opts": {
@@ -158,7 +162,8 @@
             "review": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/comments/comment/remove": {
         "opts": {
@@ -167,7 +172,8 @@
         },
         "method": "DELETE",
         "url": "/comments/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/comments/replies/get": {
         "opts": {
@@ -190,7 +196,8 @@
             "spoiler": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/comments/like/add": {
         "opts": {
@@ -199,7 +206,8 @@
         },
         "method": "POST",
         "url": "/comments/:id/like",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/comments/like/remove": {
         "opts": {
@@ -208,7 +216,8 @@
         },
         "method": "DELETE",
         "url": "/comments/:id/like",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/genres": {
         "opts": {
@@ -298,7 +307,8 @@
         },
         "method": "GET",
         "url": "/movies/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/movies/aliases": {
         "opts": {
@@ -343,7 +353,8 @@
         },
         "method": "GET",
         "url": "/movies/:id/people",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/movies/ratings": {
         "opts": {
@@ -352,7 +363,8 @@
         },
         "method": "GET",
         "url": "/movies/:id/ratings",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/movies/related": {
         "opts": {
@@ -370,7 +382,8 @@
         },
         "method": "GET",
         "url": "/movies/:id/stats",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/movies/watching": {
         "opts": {
@@ -397,7 +410,8 @@
         },
         "method": "GET",
         "url": "/people/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/people/movies": {
         "opts": {
@@ -406,7 +420,8 @@
         },
         "method": "GET",
         "url": "/people/:id/movies",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/people/shows": {
         "opts": {
@@ -415,7 +430,8 @@
         },
         "method": "GET",
         "url": "/people/:id/shows",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/recommendations/movies/get": {
         "opts": {
@@ -433,7 +449,8 @@
         },
         "method": "DELETE",
         "url": "/recommendations/movies/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/recommendations/shows/get": {
         "opts": {
@@ -451,7 +468,8 @@
         },
         "method": "DELETE",
         "url": "/recommendations/shows/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/scrobble/start": {
         "opts": {
@@ -467,7 +485,8 @@
             "app_version": null,
             "app_date": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/scrobble/pause": {
         "opts": {
@@ -483,7 +502,8 @@
             "app_version": null,
             "app_date": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/scrobble/stop": {
         "opts": {
@@ -499,7 +519,8 @@
             "app_version": null,
             "app_date": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/search/text": {
         "opts": {
@@ -589,7 +610,8 @@
         },
         "method": "GET",
         "url": "/shows/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/aliases": {
         "opts": {
@@ -625,7 +647,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/progress/collection?hidden=&specials=&count_specials=",
-        "optional": ["hidden", "specials", "count_specials"]
+        "optional": ["hidden", "specials", "count_specials"],
+        "expects": "Object"
     },
     "/shows/progress/watched": {
         "opts": {
@@ -634,7 +657,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials",
-        "optional": ["hidden", "specials", "count_specials"]
+        "optional": ["hidden", "specials", "count_specials"],
+        "expects": "Object"
     },
     "/shows/people": {
         "opts": {
@@ -643,7 +667,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/people",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/ratings": {
         "opts": {
@@ -652,7 +677,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/ratings",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/related": {
         "opts": {
@@ -670,7 +696,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/stats",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/watching": {
         "opts": {
@@ -688,7 +715,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/next_episode",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/last_episode": {
         "opts": {
@@ -697,7 +725,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/last_episode",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/shows/lists": {
         "opts": {
@@ -742,7 +771,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/ratings",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/seasons/watching": {
         "opts": {
@@ -769,7 +799,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/episodes/comments": {
         "opts": {
@@ -787,7 +818,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/ratings",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/episodes/stats": {
         "opts": {
@@ -796,7 +828,8 @@
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/stats",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/episodes/watching": {
         "opts": {
@@ -823,7 +856,8 @@
         },
         "method": "GET",
         "url": "/sync/last_activities",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/playback/get": {
         "opts": {
@@ -841,7 +875,8 @@
         },
         "method": "DELETE",
         "url": "/sync/playback/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/sync/collection/get": {
         "opts": {
@@ -865,7 +900,8 @@
             "episodes": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/collection/remove": {
         "opts": {
@@ -879,7 +915,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/watched": {
         "opts": {
@@ -911,7 +948,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/history/remove": {
         "opts": {
@@ -925,7 +963,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/ratings/get": {
         "opts": {
@@ -949,7 +988,8 @@
             "episodes": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/ratings/remove": {
         "opts": {
@@ -964,7 +1004,8 @@
             "episodes": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/watchlist/get": {
         "opts": {
@@ -988,7 +1029,8 @@
             "episodes": null
 
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/sync/watchlist/remove": {
         "opts": {
@@ -1002,7 +1044,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/settings": {
         "opts": {
@@ -1011,7 +1054,8 @@
         },
         "method": "GET",
         "url": "/users/settings",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/hidden/get": {
         "opts": {
@@ -1034,7 +1078,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/hidden/remove": {
         "opts": {
@@ -1048,7 +1093,8 @@
             "shows": null,
             "episodes": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/requests/get": {
         "opts": {
@@ -1066,7 +1112,8 @@
         },
         "method": "POST",
         "url": "/users/requests/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/requests/deny": {
         "opts": {
@@ -1075,7 +1122,8 @@
         },
         "method": "DELETE",
         "url": "/users/requests/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/users/profile": {
         "opts": {
@@ -1084,7 +1132,8 @@
         },
         "method": "GET",
         "url": "/users/:username",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/collection": {
         "opts": {
@@ -1127,7 +1176,8 @@
             "display_numbers": null,
             "allow_comments": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/list/get": {
         "opts": {
@@ -1136,7 +1186,8 @@
         },
         "method": "GET",
         "url": "/users/:username/lists/:id",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/list/update": {
         "opts": {
@@ -1152,7 +1203,8 @@
             "display_numbers": null,
             "allow_comments": null
         },
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/list/delete": {
         "opts": {
@@ -1161,7 +1213,8 @@
         },
         "method": "DELETE",
         "url": "/users/:username/lists/:id",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/users/list/like/add": {
         "opts": {
@@ -1170,7 +1223,8 @@
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/like",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/users/list/like/remove": {
         "opts": {
@@ -1179,7 +1233,8 @@
         },
         "method": "DELETE",
         "url": "/users/:username/lists/:id/like",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/users/list/items/get": {
         "opts": {
@@ -1197,7 +1252,8 @@
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/list/items/remove": {
         "opts": {
@@ -1206,7 +1262,8 @@
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items/remove",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/list/comments": {
         "opts": {
@@ -1224,7 +1281,8 @@
         },
         "method": "POST",
         "url": "/users/:username/follow",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/follow/remove": {
         "opts": {
@@ -1233,7 +1291,8 @@
         },
         "method": "DELETE",
         "url": "/users/:username/follow",
-        "optional": []
+        "optional": [],
+        "expects": "void"
     },
     "/users/followers": {
         "opts": {
@@ -1296,7 +1355,8 @@
         },
         "method": "GET",
         "url": "/users/:username/watching",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     },
     "/users/watched": {
         "opts": {
@@ -1314,6 +1374,7 @@
         },
         "method": "GET",
         "url": "/users/:username/stats",
-        "optional": []
+        "optional": [],
+        "expects": "Object"
     }
 }
